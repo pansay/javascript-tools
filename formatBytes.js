@@ -7,7 +7,8 @@
 const units = ['B','kB','MB','GB','TB','PB','EB','ZB','YB'];
 const formatBytes = (number, decimals = 2) => {
   const optimalExp = Math.floor( Math.log(number) / Math.log(1024) );
-  number = number / (1024 ** optimalExp);
-  number = number.toFixed(decimals) + units[optimalExp];
+  const availabeExp = optimalExp < units.length - 1 ? optimalExp : units.length - 1;
+  number = number / (1024 ** availabeExp);
+  number = number.toFixed(decimals) + units[availabeExp];
   return number;
 };
